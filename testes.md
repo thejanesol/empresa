@@ -13,10 +13,9 @@
 #
 
 #### Cadastrar pedidos
-[ ] POST: http://localhost:8080/pedido
+[X] POST: http://localhost:8080/pedido
 
 {
-    "nfe": ,
     "data_emissao": "",
     "status_pedido": "",
     "valor_total": ,
@@ -36,8 +35,8 @@
     "salario": "",
     "data_nascimento": "",
     "email": "",
-    "senha": ""
-    "habilitado": 
+    "senha": "",
+    "habilitado": 1
 }
 
 [X] POST/PUT: http://localhost:8080/autorizacao/**MATRICULA**

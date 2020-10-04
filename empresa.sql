@@ -148,7 +148,7 @@ insert  into produto (nome, descricao, estoque, preco) values
 
 
 CREATE TABLE pedido (
-	nfe VARCHAR(50) PRIMARY KEY,
+	nfe INT PRIMARY KEY AUTO_INCREMENT,
     data_emissao DATE NOT NULL,
     valor_total DECIMAL(10,2) NOT NULL DEFAULT 0,
     status_pedido VARCHAR(10) NOT NULL DEFAULT "pendente",
@@ -157,22 +157,22 @@ CREATE TABLE pedido (
 ) ENGINE = InnoDB;
 
 INSERT INTO pedido 
-VALUES ("2020000001", '2020-02-22', (SELECT preco FROM produto WHERE id = 1), "pendente", 1),
-("2020000002", '2020-02-23', (SELECT preco FROM produto WHERE id = 5) + (SELECT preco FROM produto WHERE id = 10), "concluído", 2),
-("2020000003", '2020-02-23', (SELECT preco FROM produto WHERE id = 7), "cancelado", 3),
-("2020000004", '2020-02-23', (SELECT preco FROM produto WHERE id = 9), "concluído", 3);
+VALUES (1, '2020-02-22', (SELECT preco FROM produto WHERE id = 1), "pendente", 1),
+(2, '2020-02-23', (SELECT preco FROM produto WHERE id = 5) + (SELECT preco FROM produto WHERE id = 10), "concluído", 2),
+(3, '2020-02-23', (SELECT preco FROM produto WHERE id = 7), "cancelado", 3),
+(4, '2020-02-23', (SELECT preco FROM produto WHERE id = 9), "concluído", 3);
 
 CREATE TABLE produto_pedido(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	fk_produto INT NOT NULL,
-    fk_pedido VARCHAR(50) NOT NULL,
+    fk_pedido INT NOT NULL,
     quantidade_produto INT DEFAULT 1,
     FOREIGN KEY (fk_produto) REFERENCES produto(id),
     FOREIGN KEY (fk_pedido) REFERENCES pedido(nfe)
 ) ENGINE = InnoDB;
 
-INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(1, "2020000001", 1);
-INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(5, "2020000002", 1);
-INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(10, "2020000002", 1);
-INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(7, "2020000003", 1);
-INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(9, "2020000004", 1);
+INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(1, 1, 1);
+INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(5, 2, 1);
+INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(10, 2, 1);
+INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(7, 3, 1);
+INSERT INTO produto_pedido (fk_produto, fk_pedido, quantidade_produto) VALUES(9, 4, 1);

@@ -23,6 +23,7 @@ public class PedidoController {
 	}
 	
 	//Criando pedidos - funcionários + gerentes
+	//PK precisar ser default/auto_increment para ser criado c esse método
 	@PostMapping() 
 	public Pedido addPedido(@RequestBody Pedido pedido) {
 		pedidoRepository.save(pedido);
